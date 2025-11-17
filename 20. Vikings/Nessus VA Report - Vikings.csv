@@ -1,0 +1,577 @@
+Plugin ID,CVE,CVSS v2.0 Base Score,Risk,Host,Protocol,Port,Name,Synopsis,Description,Solution,See Also,Plugin Output
+"10107","","","None","192.168.1.8","tcp","80","HTTP Server Type and Version","A web server is running on the remote host.","This plugin attempts to determine the type and the version of the
+  remote web server.","n/a","","The remote web server type is :
+
+Apache/2.4.29 (Ubuntu)"
+"10267","","","None","192.168.1.8","tcp","22","SSH Server Type and Version Information","An SSH server is listening on this port.","It is possible to obtain information about the remote SSH server by
+sending an empty authentication request.","n/a","","
+SSH version : SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.5
+SSH supported authentication : publickey,password
+"
+"10287","","","None","192.168.1.8","udp","0","Traceroute Information","It was possible to obtain traceroute information.","Makes a traceroute to the remote host.","n/a","","For your information, here is the traceroute from 192.168.1.15 to 192.168.1.8 : 
+192.168.1.15
+192.168.1.8
+
+Hop Count: 1
+"
+"10704","CVE-2001-0731","5.0","Medium","192.168.1.8","tcp","80","Apache Multiviews Arbitrary Directory Listing","The remote web server is affected by an information disclosure
+vulnerability.","The Apache web server running on the remote host is affected by an
+information disclosure vulnerability. An unauthenticated, remote
+attacker can exploit this, by sending a crafted request, to display a
+listing of a remote directory, even if a valid index file exists in
+the directory.
+
+For Apache web server later than 1.3.22, review listing directory
+configuration to avoid disclosing sensitive information","Upgrade to Apache version 1.3.22 or later. Alternatively, as a
+workaround, disable Multiviews.","http://www.nessus.org/u?f39e976b
+http://www.nessus.org/u?a96611bc
+http://www.nessus.org/u?c1c382bc","
+Nessus was able to exploit the issue using the following request :
+
+http://192.168.1.8/?M=A
+
+
+This produced the following truncated output (limited to 10 lines) :
+------------------------------ snip ------------------------------
+<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 3.2 Final//EN"">
+<html>
+<head>
+<title>Index of /</title>
+</head>
+<body>
+<h1>Index of /</h1>
+<table>
+<tr><th valign=""top""><img src=""/icons/blank.gif"" alt=""[ICO]""></th><th><a href=""?C=N;O=D"">Name</a></th><th><a href=""?C=M;O=A"">Last modified</a></th><th><a href=""?C=S;O=A"">Size</a></th><th><a href=""?C=D;O=A"">Description</a></th></tr>
+<tr><th colspan=""5""><hr></th></tr>
+[...]
+
+------------------------------ snip ------------------------------
+"
+"10881","","","None","192.168.1.8","tcp","22","SSH Protocol Versions Supported","A SSH server is running on the remote host.","This plugin determines the versions of the SSH protocol supported by
+the remote SSH daemon.","n/a","","The remote SSH daemon supports the following versions of the
+SSH protocol :
+
+  - 2.0
+"
+"11936","","","None","192.168.1.8","tcp","0","OS Identification","It is possible to guess the remote operating system.","Using a combination of remote probes (e.g., TCP/IP, SMB, HTTP, NTP,
+SNMP, etc.), it is possible to guess the name of the remote operating
+system in use. It is also possible sometimes to guess the version of
+the operating system.","n/a","","
+Remote operating system : Linux Kernel 4.15 on Ubuntu 18.04 (bionic)
+Confidence level : 95
+Method : SSH
+
+ 
+The remote host is running Linux Kernel 4.15 on Ubuntu 18.04 (bionic)"
+"14272","","","None","192.168.1.8","tcp","22","Netstat Portscanner (SSH)","Remote open ports can be enumerated via SSH.","Nessus was able to run 'netstat' on the remote host to enumerate the
+open ports. If 'netstat' is not available, the plugin will attempt to use 'ss'.
+
+See the section 'plugins options' about configuring this plugin.
+
+Note: This plugin will run on Windows (using netstat.exe) in the
+event that the target being scanned is localhost.","n/a","https://en.wikipedia.org/wiki/Netstat","Port 22/tcp was found to be open"
+"14272","","","None","192.168.1.8","tcp","80","Netstat Portscanner (SSH)","Remote open ports can be enumerated via SSH.","Nessus was able to run 'netstat' on the remote host to enumerate the
+open ports. If 'netstat' is not available, the plugin will attempt to use 'ss'.
+
+See the section 'plugins options' about configuring this plugin.
+
+Note: This plugin will run on Windows (using netstat.exe) in the
+event that the target being scanned is localhost.","n/a","https://en.wikipedia.org/wiki/Netstat","Port 80/tcp was found to be open"
+"14272","","","None","192.168.1.8","udp","68","Netstat Portscanner (SSH)","Remote open ports can be enumerated via SSH.","Nessus was able to run 'netstat' on the remote host to enumerate the
+open ports. If 'netstat' is not available, the plugin will attempt to use 'ss'.
+
+See the section 'plugins options' about configuring this plugin.
+
+Note: This plugin will run on Windows (using netstat.exe) in the
+event that the target being scanned is localhost.","n/a","https://en.wikipedia.org/wiki/Netstat","Port 68/udp was found to be open"
+"19506","","","None","192.168.1.8","tcp","0","Nessus Scan Information","This plugin displays information about the Nessus scan.","This plugin displays, for each tested host, information about the
+scan itself :
+
+  - The version of the plugin set.
+  - The type of scanner (Nessus or Nessus Home).
+  - The version of the Nessus Engine.
+  - The port scanner(s) used.
+  - The port range scanned.
+  - The ping round trip time 
+  - Whether credentialed or third-party patch management
+    checks are possible.
+  - Whether the display of superseded patches is enabled
+  - The date of the scan.
+  - The duration of the scan.
+  - The number of hosts scanned in parallel.
+  - The number of checks done in parallel.","n/a","","Information about this scan : 
+
+Nessus version : 10.9.3
+Nessus build : 20023
+Plugin feed version : 202508200628
+Scanner edition used : Nessus
+
+ERROR: Your plugins have not been updated since 2025/8/20
+Performing a scan with an older plugin set will yield out-of-date results and
+produce an incomplete audit. Please run nessus-update-plugins to get the
+newest vulnerability checks from Nessus.org.
+
+Scanner OS : LINUX
+Scanner distribution : ubuntu1604-x86-64
+Scan type : Normal
+Scan name : Vikings
+Scan policy used : Advanced Scan
+Scanner IP : 192.168.1.15
+Port scanner(s) : netstat 
+Port range : 65535
+Ping RTT : 107.652 ms
+Thorough tests : no
+Experimental tests : no
+Scan for Unpatched Vulnerabilities : no
+Plugin debugging enabled : no
+Paranoia level : 1
+Report verbosity : 1
+Safe checks : yes
+Optimize the test : yes
+Credentialed checks : no
+Patch management checks : None
+Display superseded patches : yes (supersedence plugin did not launch)
+CGI scanning : disabled
+Web application tests : disabled
+Max hosts : 100
+Max checks : 5
+Recv timeout : 5
+Backports : Detected
+Allow post-scan editing : Yes
+Nessus Plugin Signature Checking : Enabled
+Audit File Signature Checking : Disabled
+Scan Start Date : 2025/11/17 5:24 UTC 
+Scan duration : 1753 sec
+Scan for malware : no
+"
+"22964","","","None","192.168.1.8","tcp","22","Service Detection","The remote service could be identified.","Nessus was able to identify the remote service by its banner or by
+looking at the error message it sends when it receives an HTTP
+request.","n/a","","An SSH server is running on this port."
+"22964","","","None","192.168.1.8","tcp","80","Service Detection","The remote service could be identified.","Nessus was able to identify the remote service by its banner or by
+looking at the error message it sends when it receives an HTTP
+request.","n/a","","A web server is running on this port."
+"24260","","","None","192.168.1.8","tcp","80","HyperText Transfer Protocol (HTTP) Information","Some information about the remote HTTP configuration can be extracted.","This test gives some information about the remote HTTP protocol - the
+version used, whether HTTP Keep-Alive is enabled, etc... 
+
+This test is informational only and does not denote any security
+problem.","n/a","","
+Response Code : HTTP/1.1 200 OK
+
+Protocol version : HTTP/1.1
+HTTP/2 TLS Support: No
+HTTP/2 Cleartext Support: No
+SSL : no
+Keep-Alive : yes
+Options allowed : (Not implemented)
+Headers :
+
+  Date: Mon, 17 Nov 2025 05:28:43 GMT
+  Server: Apache/2.4.29 (Ubuntu)
+  Vary: Accept-Encoding
+  Content-Length: 743
+  Keep-Alive: timeout=5, max=100
+  Connection: Keep-Alive
+  Content-Type: text/html;charset=UTF-8
+  
+Response Body :
+
+<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 3.2 Final//EN"">
+<html>
+ <head>
+  <title>Index of /</title>
+ </head>
+ <body>
+<h1>Index of /</h1>
+  <table>
+   <tr><th valign=""top""><img src=""/icons/blank.gif"" alt=""[ICO]""></th><th><a href=""?C=N;O=D"">Name</a></th><th><a href=""?C=M;O=A"">Last modified</a></th><th><a href=""?C=S;O=A"">Size</a></th><th><a href=""?C=D;O=A"">Description</a></th></tr>
+   <tr><th colspan=""5""><hr></th></tr>
+<tr><td valign=""top""><img src=""/icons/folder.gif"" alt=""[DIR]""></td><td><a href=""site/"">site/</a></td><td align=""right"">2020-10-29 21:07  </td><td align=""right"">  - </td><td>&nbsp;</td></tr>
+   <tr><th colspan=""5""><hr></th></tr>
+</table>
+<address>Apache/2.4.29 (Ubuntu) Server at 192.168.1.8 Port 80</address>
+</body></html>
+"
+"25220","","","None","192.168.1.8","tcp","0","TCP/IP Timestamps Supported","The remote service implements TCP timestamps.","The remote host implements TCP timestamps, as defined by RFC1323.  A
+side effect of this feature is that the uptime of the remote host can
+sometimes be computed.","n/a","http://www.ietf.org/rfc/rfc1323.txt",""
+"35716","","","None","192.168.1.8","tcp","0","Ethernet Card Manufacturer Detection","The manufacturer can be identified from the Ethernet OUI.","Each ethernet MAC address starts with a 24-bit Organizationally 
+Unique Identifier (OUI). These OUIs are registered by IEEE.","n/a","https://standards.ieee.org/faqs/regauth.html
+http://www.nessus.org/u?794673b4","
+The following card manufacturers were identified :
+
+08:00:27:39:05:83 : PCS Systemtechnik GmbH
+"
+"39520","","","None","192.168.1.8","tcp","22","Backported Security Patch Detection (SSH)","Security patches are backported.","Security patches may have been 'backported' to the remote SSH server
+without changing its version number. 
+
+Banner-based checks have been disabled to avoid false positives. 
+
+Note that this test is informational only and does not denote any
+security problem.","n/a","https://access.redhat.com/security/updates/backporting/?sc_cid=3093","
+Give Nessus credentials to perform local checks.
+"
+"39521","","","None","192.168.1.8","tcp","80","Backported Security Patch Detection (WWW)","Security patches are backported.","Security patches may have been 'backported' to the remote HTTP server
+without changing its version number.
+
+Banner-based checks have been disabled to avoid false positives.
+
+Note that this test is informational only and does not denote any
+security problem.","n/a","https://access.redhat.com/security/updates/backporting/?sc_cid=3093","
+Give Nessus credentials to perform local checks.
+"
+"43111","","","None","192.168.1.8","tcp","80","HTTP Methods Allowed (per directory)","This plugin determines which HTTP methods are allowed on various CGI
+directories.","By calling the OPTIONS method, it is possible to determine which HTTP
+methods are allowed on each directory.
+
+The following HTTP methods are considered insecure:
+  PUT, DELETE, CONNECT, TRACE, HEAD
+
+Many frameworks and languages treat 'HEAD' as a 'GET' request, albeit
+one without any body in the response. If a security constraint was
+set on 'GET' requests such that only 'authenticatedUsers' could
+access GET requests for a particular servlet or resource, it would be
+bypassed for the 'HEAD' version. This allowed unauthorized blind
+submission of any privileged GET request.
+
+As this list may be incomplete, the plugin also tests - if 'Thorough
+tests' are enabled or 'Enable web applications tests' is set to 'yes'
+in the scan policy - various known HTTP methods on each directory and
+considers them as unsupported if it receives a response code of 400,
+403, 405, or 501.
+
+Note that the plugin output is only informational and does not
+necessarily indicate the presence of any security vulnerabilities.","n/a","http://www.nessus.org/u?d9c03a9a
+http://www.nessus.org/u?b019cbdb
+https://www.owasp.org/index.php/Test_HTTP_Methods_(OTG-CONFIG-006)","Based on the response to an OPTIONS request :
+
+  - HTTP methods GET HEAD OPTIONS POST are allowed on : 
+
+    /
+
+"
+"45590","","","None","192.168.1.8","tcp","0","Common Platform Enumeration (CPE)","It was possible to enumerate CPE names that matched on the remote
+system.","By using information obtained from a Nessus scan, this plugin reports
+CPE (Common Platform Enumeration) matches for various hardware and
+software products found on a host. 
+
+Note that if an official CPE is not available for the product, this
+plugin computes the best possible CPE based on the information
+available from the scan.","n/a","http://cpe.mitre.org/
+https://nvd.nist.gov/products/cpe","
+Following application CPE's matched on the remote system : 
+
+  cpe:/a:apache:http_server:2.4.29 -> Apache Software Foundation Apache HTTP Server
+  cpe:/a:apache:http_server:2.4.99 -> Apache Software Foundation Apache HTTP Server
+  cpe:/a:openbsd:openssh:7.6 -> OpenBSD OpenSSH
+  cpe:/a:openbsd:openssh:7.6p1 -> OpenBSD OpenSSH
+"
+"48204","","","None","192.168.1.8","tcp","80","Apache HTTP Server Version","It is possible to obtain the version number of the remote Apache HTTP
+server.","The remote host is running the Apache HTTP Server, an open source web
+server. It was possible to read the version number from the banner.","n/a","https://httpd.apache.org/","
+  URL        : http://192.168.1.8/
+  Version    : 2.4.99
+  Source     : Server: Apache/2.4.29 (Ubuntu)
+  backported : 1
+  os         : ConvertedUbuntu
+"
+"54615","","","None","192.168.1.8","tcp","0","Device Type","It is possible to guess the remote device type.","Based on the remote operating system, it is possible to determine
+what the remote system type is (eg: a printer, router, general-purpose
+computer, etc).","n/a","","Remote device type : general-purpose
+Confidence level : 95
+"
+"64582","","","None","192.168.1.8","tcp","0","Netstat Connection Information","Nessus was able to parse the results of the 'netstat' command on the
+remote host.","The remote host has listening ports or established connections that
+Nessus was able to extract from the results of the 'netstat' command.
+
+Note: The output for this plugin can be very long, and is not shown by default. To display it, enable verbose reporting in scan settings.","n/a","",""
+"66334","","","None","192.168.1.8","tcp","0","Patch Report","The remote host is missing several patches.","The remote host is missing one or more security patches. This plugin lists the newest version of each patch to install 
+to make sure the remote host is up-to-date.
+
+Note: Because the 'Show missing patches that have been superseded' setting in your scan policy depends on this plugin,
+it will always run and cannot be disabled.","Install the patches listed below.","","
+
+. You need to take the following action :
+
+[ SSH Terrapin Prefix Truncation Weakness (CVE-2023-48795) (187315) ]
+
++ Action to take : Contact the vendor for an update with the strict key exchange countermeasures or disable the affected algorithms.
+
+
+"
+"70657","","","None","192.168.1.8","tcp","22","SSH Algorithms and Languages Supported","An SSH server is listening on this port.","This script detects which algorithms and languages are supported by
+the remote service for encrypting communications.","n/a","","
+Nessus negotiated the following encryption algorithm(s) with the server : 
+
+  Client to Server: aes256-ctr
+  Server to Client: aes256-ctr
+
+The server supports the following options for compression_algorithms_server_to_client : 
+
+  none
+  zlib@openssh.com
+
+The server supports the following options for mac_algorithms_client_to_server : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+  hmac-sha2-256
+  hmac-sha2-256-etm@openssh.com
+  hmac-sha2-512
+  hmac-sha2-512-etm@openssh.com
+  umac-128-etm@openssh.com
+  umac-128@openssh.com
+  umac-64-etm@openssh.com
+  umac-64@openssh.com
+
+The server supports the following options for server_host_key_algorithms : 
+
+  ecdsa-sha2-nistp256
+  rsa-sha2-256
+  rsa-sha2-512
+  ssh-ed25519
+  ssh-rsa
+
+The server supports the following options for encryption_algorithms_client_to_server : 
+
+  aes128-ctr
+  aes128-gcm@openssh.com
+  aes192-ctr
+  aes256-ctr
+  aes256-gcm@openssh.com
+  chacha20-poly1305@openssh.com
+
+The server supports the following options for mac_algorithms_server_to_client : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+  hmac-sha2-256
+  hmac-sha2-256-etm@openssh.com
+  hmac-sha2-512
+  hmac-sha2-512-etm@openssh.com
+  umac-128-etm@openssh.com
+  umac-128@openssh.com
+  umac-64-etm@openssh.com
+  umac-64@openssh.com
+
+The server supports the following options for kex_algorithms : 
+
+  curve25519-sha256
+  curve25519-sha256@libssh.org
+  diffie-hellman-group-exchange-sha256
+  diffie-hellman-group14-sha1
+  diffie-hellman-group14-sha256
+  diffie-hellman-group16-sha512
+  diffie-hellman-group18-sha512
+  ecdh-sha2-nistp256
+  ecdh-sha2-nistp384
+  ecdh-sha2-nistp521
+
+The server supports the following options for compression_algorithms_client_to_server : 
+
+  none
+  zlib@openssh.com
+
+The server supports the following options for encryption_algorithms_server_to_client : 
+
+  aes128-ctr
+  aes128-gcm@openssh.com
+  aes192-ctr
+  aes256-ctr
+  aes256-gcm@openssh.com
+  chacha20-poly1305@openssh.com
+"
+"86420","","","None","192.168.1.8","tcp","0","Ethernet MAC Addresses","This plugin gathers MAC addresses from various sources and
+consolidates them into a list.","This plugin gathers MAC addresses discovered from both remote probing
+of the host (e.g. SNMP and Netbios) and from running local checks
+(e.g. ifconfig). It then consolidates the MAC addresses into a single,
+unique, and uniform list.","n/a","","The following is a consolidated list of detected MAC addresses:
+  - 08:00:27:39:05:83
+"
+"102094","","","None","192.168.1.8","tcp","0","SSH Commands Require Privilege Escalation","This plugin reports the SSH commands that failed with a response
+indicating that privilege escalation is required to run them.","This plugin reports the SSH commands that failed with a response
+indicating that privilege escalation is required to run them. Either
+privilege escalation credentials were not provided, or the command
+failed to run with the provided privilege escalation credentials. 
+
+NOTE: Due to limitations inherent to the majority of SSH servers, 
+this plugin may falsely report failures for commands containing 
+error output expected by sudo, such as 'incorrect password', 
+'not in the sudoers file', or 'not allowed to execute'.","n/a","","
+Login account : ragnar
+Commands failed due to privilege escalation failure:
+- Escalation account : ragnar + root
+  Escalation method  : su + sudo
+  Plugins :
+  - Plugin Filename : netstat_portscan.nasl
+    Plugin ID       : 14272
+    Plugin Name     : Netstat Portscanner (SSH)
+    - Command  : ""netstat -a -n""
+      Response : null
+      Error    : ""\nsh_shell_handler [channel 0]: ERROR - Bad privilege escalation password. Sending CTRL+C and removing privilege escalation from credential set.\nsh_shell_handler [channel 0]: ERROR - unable to get back to command prompt."""
+"141118","","","None","192.168.1.8","tcp","22","Target Credential Status by Authentication Protocol - Valid Credentials Provided","Valid credentials were provided for an available authentication protocol.","Nessus was able to determine that valid credentials were provided for
+an authentication protocol available on the remote target because it
+was able to successfully authenticate directly to the remote target
+using that authentication protocol at least once. Authentication was
+successful because the authentication protocol service was available
+remotely, the service was able to be identified, the authentication
+protocol was able to be negotiated successfully, and a set of
+credentials provided in the scan policy for that authentication
+protocol was accepted by the remote service. See plugin output for
+details, including protocol, port, and account.
+
+Please note the following :
+
+- This plugin reports per protocol, so it is possible for
+  valid credentials to be provided for one protocol and not
+  another. For example, authentication may succeed via SSH
+  but fail via SMB, while no credentials were provided for
+  an available SNMP service.
+
+- Providing valid credentials for all available
+  authentication protocols may improve scan coverage, but
+  the value of successful authentication for a given
+  protocol may vary from target to target depending upon
+  what data (if any) is gathered from the target via that
+  protocol. For example, successful authentication via SSH
+  is more valuable for Linux targets than for Windows
+  targets, and likewise successful authentication via SMB
+  is more valuable for Windows targets than for Linux
+  targets.","n/a","","
+Nessus was able to log in to the remote host via the following :
+
+User:       'ragnar'
+Port:       22
+Proto:      SSH
+Method:     password
+"
+"149334","","","None","192.168.1.8","tcp","22","SSH Password Authentication Accepted","The SSH server on the remote host accepts password authentication.","The SSH server on the remote host accepts password authentication.","n/a","https://tools.ietf.org/html/rfc4252#section-8",""
+"150799","","","None","192.168.1.8","tcp","22","Target Access Problems by Authentication Protocol - Maximum Privilege Account Used in Scan","Nessus scanned the target host with the highest available privilege
+level. Yet Nessus encountered permissions issues while accessing one
+or more items during the scan.","Nessus was able to log in to the remote host using the provided
+credentials. The provided credentials have the highest privilege
+possible on the remote host.  Yet Nessus encountered permissions
+issues while accessing items during the scan.
+
+It is likely that this condition is caused by one or more of the
+following:
+
+1)  A plugin tried to access a resource that requires a special
+    privilege level such as NT_AUTHORITY on Windows.  The resource
+    may have had its permissions altered since the plugin was
+    written.
+2)  Environmental issues may have caused an intermittent failure
+    in authentication that caused Nessus to stop attempting
+    privilege escalation.
+3)  A resource on the host that Nessus attempts to access multiple
+    times may be configured with access limits.  Related lockouts may
+    look like permissions failures.
+4)  Nessus may have tried to access a resource that does not exist
+    on a target that fails to properly report permissions issues.
+    For instance, on some legacy unix systems such as AIX or HP-UX
+    there is no way to distinguish a missing resource from a
+    permissions error.
+
+If you believe that the plugin indicated attempted to access the
+wrong resource or a resource that has recently received special OS
+protection, please contact Tenable Support.","n/a","","
+Nessus was able to log in to the remote host via the following
+protocol as ragnar. During the scan Nessus encountered
+the following permissions issues while performing the planned checks:
+
+  Protocol        : SSH
+  Port            : 22
+
+See the output of the following plugin for details :
+
+  Plugin ID   : 102094
+  Plugin Name : SSH Commands Require Privilege Escalation
+
+
+Note: Nessus was unable to determine the privilege of
+ the logged in user and therefore is reporting permissions 
+ problems here.  Please check to see whether privilege escalation
+ failed or whether the scan can be configured to supply more access.
+"
+"153588","","","None","192.168.1.8","tcp","22","SSH SHA-1 HMAC Algorithms Enabled","The remote SSH server is configured to enable SHA-1 HMAC algorithms.","The remote SSH server is configured to enable SHA-1 HMAC algorithms.
+
+Although NIST has formally deprecated use of SHA-1 for digital signatures, SHA-1 is still considered secure for HMAC as
+the security of HMAC does not rely on the underlying hash function being resistant to collisions.
+
+Note that this plugin only checks for the options of the remote SSH server.","n/a","","
+The following client-to-server SHA-1 Hash-based Message Authentication Code (HMAC) algorithms are supported : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+
+The following server-to-client SHA-1 Hash-based Message Authentication Code (HMAC) algorithms are supported : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+"
+"181418","","","None","192.168.1.8","tcp","22","OpenSSH Detection","An OpenSSH-based SSH server was detected on the remote host.","An OpenSSH-based SSH server was detected on the remote host.","n/a","https://www.openssh.com/","
+  Service : ssh
+  Version : 7.6p1
+  Banner  : SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.5
+"
+"187315","CVE-2023-48795","5.4","Medium","192.168.1.8","tcp","22","SSH Terrapin Prefix Truncation Weakness (CVE-2023-48795)","The remote SSH server is vulnerable to a mitm prefix truncation attack.","The remote SSH server is vulnerable to a man-in-the-middle prefix truncation weakness known as Terrapin. This can
+allow a remote, man-in-the-middle attacker to bypass integrity checks and downgrade the connection's security.
+
+Note that this plugin only checks for remote SSH servers that support either ChaCha20-Poly1305 or CBC with
+Encrypt-then-MAC and do not support the strict key exchange countermeasures. It does not check for vulnerable software
+versions.","Contact the vendor for an update with the strict key exchange countermeasures or disable the affected algorithms.","https://terrapin-attack.com/","Supports following ChaCha20-Poly1305 Client to Server algorithm : chacha20-poly1305@openssh.com
+Supports following Encrypt-then-MAC Client to Server algorithm  : umac-64-etm@openssh.com
+Supports following Encrypt-then-MAC Client to Server algorithm  : umac-128-etm@openssh.com
+Supports following Encrypt-then-MAC Client to Server algorithm  : hmac-sha2-256-etm@openssh.com
+Supports following Encrypt-then-MAC Client to Server algorithm  : hmac-sha2-512-etm@openssh.com
+Supports following Encrypt-then-MAC Client to Server algorithm  : hmac-sha1-etm@openssh.com
+Supports following ChaCha20-Poly1305 Server to Client algorithm : chacha20-poly1305@openssh.com
+Supports following Encrypt-then-MAC Server to Client algorithm  : umac-64-etm@openssh.com
+Supports following Encrypt-then-MAC Server to Client algorithm  : umac-128-etm@openssh.com
+Supports following Encrypt-then-MAC Server to Client algorithm  : hmac-sha2-256-etm@openssh.com
+Supports following Encrypt-then-MAC Server to Client algorithm  : hmac-sha2-512-etm@openssh.com
+Supports following Encrypt-then-MAC Server to Client algorithm  : hmac-sha1-etm@openssh.com
+"
+"201456","","10.0","Critical","192.168.1.8","tcp","22","Canonical Ubuntu Linux SEoL (18.04.x)","An unsupported version of Canonical Ubuntu Linux is installed on the remote host.","According to its version, Canonical Ubuntu Linux is 18.04.x. It is, therefore, no longer maintained by its vendor or
+provider.
+
+Lack of support implies that no new security patches for the product will be released by the vendor. As a result, it may
+contain security vulnerabilities.","Upgrade to a version of Canonical Ubuntu Linux that is currently supported.","https://ubuntu.com/blog/18-04-end-of-standard-support","
+  OS                                     : Ubuntu Linux 18.04
+  Security End of Life                   : May 31, 2023
+  Time since Security End of Life (Est.) : >= 2 years
+"
+"209654","","","None","192.168.1.8","tcp","0","OS Fingerprints Detected","Multiple OS fingerprints were detected.","Using a combination of remote probes (TCP/IP, SMB, HTTP, NTP, SNMP, etc), 
+it was possible to gather one or more fingerprints from the remote system. 
+While the highest-confidence result was reported in plugin 11936, “OS Identification”, 
+the complete set of fingerprints detected are reported here.","n/a","","
+Following OS Fingerprints were found
+
+Remote operating system : Ubuntu 18.04 Linux Kernel 4.15
+Confidence level : 56
+Method : MLSinFP
+Type : unknown
+Fingerprint : unknown
+
+Remote operating system : Linux Kernel 4.15 on Ubuntu 18.04 (bionic)
+Confidence level : 95
+Method : SSH
+Type : general-purpose
+Fingerprint : SSH:SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.5
+
+Remote operating system : Cisco Catalyst 9200 Series Switches
+Cisco Catalyst 9300 Series Switches
+Cisco Catalyst IE9300 Rugged Series
+Nutanix
+Confidence level : 59
+Method : SinFP
+Type : 
+Fingerprint : SinFP:
+   P1:B10113:F0x12:W64240:O0204ffff:M1460:
+   P2:B10113:F0x12:W65160:O0204ffff0402080affffffff4445414401030307:M1460:
+   P3:B00000:F0x00:W0:O0:M0
+   P4:191303_7_p=22
+
+Following fingerprints could not be used to determine OS : 
+ HTTP:!:Server: Apache/2.4.29 (Ubuntu)
+
+"
