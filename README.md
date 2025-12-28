@@ -17,3 +17,7 @@ This repository contains my solved machines with penetration testing and vulnera
 
 ## Purpose
 A clean showcase of my hands-on security work and reporting capability.
+
+```
+apt install tor
+```
